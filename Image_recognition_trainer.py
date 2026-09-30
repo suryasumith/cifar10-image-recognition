@@ -1,7 +1,7 @@
 # IMAGE RECOGNITION USING CIFAR-10
 # FILE: Image_Reconition_Trainer.py
 # DESCRIPTION: Trains a CNN model on CIFAR-10 and saves it
-# Author: U. VAMSHI | Roll No: 1009-22-861-022
+# Author: T. SUMEETH | Roll No: 1009-22-861-045
 # Nizam College (Autonomous), Dept. of Informatics
 # ============================================================
 
