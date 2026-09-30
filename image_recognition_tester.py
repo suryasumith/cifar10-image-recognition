@@ -1,0 +1,39 @@
+from PIL import Image
+import numpy as np
+from tensorflow.keras.models import load_model
+
+# CIFAR-10 labels
+labels = [
+    'airplane', 'automobile', 'bird', 'cat', 'deer',
+    'dog', 'frog', 'horse', 'ship', 'truck'
+]
+
+print("Loading trained model...")
+model = load_model('trained_model.h5')
+print("Model loaded successfully!\n")
+
+# Get image path
+input_path = input("Enter image file pathname: ")
+
+# Load image
+input_image = Image.open(input_path).convert('RGB')
+
+# Resize to 32x32
+input_image = input_image.resize((32, 32))
+
+# Convert to array
+image_array = np.array(input_image).astype('float32') / 255.0
+image_array = image_array.reshape(1, 32, 32, 3)
+
+# Predict
+answer = model.predict(image_array)
+
+predicted_label = labels[np.argmax(answer)]
+
+print(f"\n✅ Predicted Class: {predicted_label.upper()}")
+print("Confidence Scores:")
+
+for i, label in enumerate(labels):
+    print(f"{label:12s}: {answer[0][i]*100:.2f}%")
+
+input_image.show()
